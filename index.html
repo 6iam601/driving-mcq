@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>অনলাইন MCQ পরীক্ষার প্ল্যাটফর্ম</title>
+    <title>অনলাইন Driving MCQ পরীক্ষার প্ল্যাটফর্ম</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Hind Siliguri & Noto Sans Bengali -->
@@ -281,57 +281,105 @@
                         <span id="res-wrong" class="text-2xl font-bold text-rose-600 mt-1">০</span>
                     </div>
 
-                    <div class="col-span-2 sm:col-span-1 bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-center flex flex-col justify-center">
+                    <div class="bg-slate-100 border border-slate-200 rounded-2xl p-3.5 text-center flex flex-col justify-center">
                         <span class="text-xs text-slate-600 font-semibold">অনুত্তরিত</span>
                         <span id="res-unanswered" class="text-2xl font-bold text-slate-700 mt-1">০</span>
                     </div>
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="mt-6 pt-6 border-t border-slate-100 flex flex-col sm:flex-row gap-3 justify-between items-center">
-                    <button type="button" onclick="retakeNewSet()" class="w-full sm:w-auto px-6 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-md shadow-brand-600/20 transition flex items-center justify-center gap-2 cursor-pointer">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+                    <button type="button" onclick="retakeNewSet()" class="py-3.5 px-5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-base shadow-md shadow-brand-600/20 flex items-center justify-center gap-2 transition cursor-pointer">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
                         <span>আবার পরীক্ষা দিন (নতুন র‍্যান্ডম সেট)</span>
                     </button>
-
-                    <button type="button" onclick="backToHome()" class="w-full sm:w-auto px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition cursor-pointer">
-                        হোম পেজে ফিরে যান
+                    <button type="button" onclick="backToHome()" class="py-3.5 px-5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-base flex items-center justify-center gap-2 transition cursor-pointer">
+                        <span>হোম পেজে ফিরে যান</span>
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- Detailed Answer Review Section -->
-        <div class="bg-white rounded-3xl shadow-xs border border-slate-200 p-5 sm:p-7">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-5 sm:p-8 space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
                 <div>
-                    <h3 class="text-xl font-bold text-slate-900">উত্তরপত্র পর্যালোচনা (Answer Review)</h3>
-                    <p class="text-xs sm:text-sm text-slate-500 mt-0.5">প্রতিটি প্রশ্নের সঠিক উত্তর এবং আপনার নির্বাচিত উত্তর নিচে দেখুন</p>
+                    <h3 class="text-xl font-bold text-slate-900">উত্তরপত্র পর্যালোচনা (Answer Sheet)</h3>
+                    <p class="text-xs sm:text-sm text-slate-500">আপনার নির্বাচিত উত্তর ও সঠিক উত্তর মিলিয়ে দেখুন</p>
                 </div>
                 
                 <!-- Filter Tabs -->
-                <div class="flex flex-wrap gap-1.5 bg-slate-100 p-1.5 rounded-xl">
+                <div class="flex flex-wrap gap-1.5 bg-slate-100 p-1 rounded-xl">
                     <button type="button" onclick="filterReview('all')" id="tab-all" class="review-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-white text-brand-900 shadow-xs transition cursor-pointer">
-                        সব প্রশ্ন (<span id="count-all">৫০</span>)
+                        সব (<span id="count-all">৫০</span>)
                     </button>
                     <button type="button" onclick="filterReview('correct')" id="tab-correct" class="review-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer">
-                        সঠিক উত্তর (<span id="count-correct">০</span>)
+                        সঠিক (<span id="count-correct">০</span>)
                     </button>
                     <button type="button" onclick="filterReview('wrong')" id="tab-wrong" class="review-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer">
-                        ভুল উত্তর (<span id="count-wrong">০</span>)
+                        ভুল (<span id="count-wrong">০</span>)
                     </button>
                     <button type="button" onclick="filterReview('unanswered')" id="tab-unanswered" class="review-tab px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition cursor-pointer">
-                        অনুত্তরিত (<span id="count-unanswered">০</span>)
+                        বাকি (<span id="count-unanswered">০</span>)
                     </button>
                 </div>
             </div>
 
-            <!-- Review Items Container -->
-            <div id="review-container" class="mt-6 space-y-4">
-                <!-- Rendered via JS -->
+            <div id="review-container" class="space-y-4">
+                <!-- Review cards injected here -->
             </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         ৪. প্রশ্নব্যাংক অধ্যয়ন স্ক্রিন (QUESTION BANK STUDY SCREEN)
+    =========================================== -->
+    <div id="bank-study-screen" class="hidden flex-1 flex flex-col max-w-4xl mx-auto w-full px-3 sm:px-6 py-4 sm:py-6 space-y-4">
+        <!-- Sticky Top Header -->
+        <div class="sticky top-0 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-5 space-y-3.5">
+            <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <button type="button" onclick="closeBankManager()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-800 font-bold text-sm transition cursor-pointer shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        <span>ফিরে যান</span>
+                    </button>
+                    <div class="min-w-0">
+                        <h2 class="font-bold text-base sm:text-xl text-brand-900 truncate">সম্পূর্ণ প্রশ্নব্যাংক (উত্তরসহ)</h2>
+                        <p class="text-xs text-slate-500">মোট <span id="modal-bank-total" class="font-bold text-brand-700">১৪২</span>টি প্রশ্ন ও সঠিক উত্তর</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeBankManager(); startExam();" class="px-3.5 sm:px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm shadow-xs transition cursor-pointer shrink-0">
+                    পরীক্ষা দিন
+                </button>
+            </div>
+
+            <!-- Live Search Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2.5">
+                <div class="relative flex-1">
+                    <svg class="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" id="bank-search-input" oninput="filterQuestionBankList()" placeholder="প্রশ্ন, উত্তর বা নম্বর লিখে খুঁজুন (যেমন: ব্রেক, হর্ন, গতিসীমা)..." 
+                        class="w-full pl-10 pr-9 py-2.5 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white text-sm text-slate-800 placeholder-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/15 outline-none transition">
+                    <button type="button" id="bank-search-clear" onclick="clearBankSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer" title="মুছুন">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="text-xs font-semibold text-slate-600 bg-slate-100 px-3.5 py-2.5 rounded-xl text-center shrink-0">
+                    দেখানো হচ্ছে: <span id="bank-filtered-count" class="text-brand-700 font-bold">১৪২</span>টি
+                </div>
+            </div>
+        </div>
+
+        <!-- Readable Questions List Container -->
+        <div id="bank-study-list" class="space-y-4 pb-8">
+            <!-- All 142 questions with highlighted answers rendered via JS -->
         </div>
     </div>
 
@@ -344,10 +392,10 @@
         <div class="bg-white w-full sm:max-w-md rounded-t-3xl sm:rounded-3xl p-5 shadow-2xl max-h-[85vh] flex flex-col">
             <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                 <h3 class="font-bold text-lg text-slate-900">প্রশ্ন নেভিগেটর</h3>
-                    <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                <button type="button" onclick="toggleMobileNav()" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 cursor-pointer" title="বন্ধ করুন">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
-                    <span>প্রশ্নব্যাংক দেখুন (<span id="bank-count-badge">১৪২</span>টি প্রশ্ন)</span>
                 </button>
             </div>
             <div class="flex items-center gap-4 text-xs text-slate-600 my-3">
@@ -382,50 +430,6 @@
                 </button>
                 <button type="button" onclick="finishExam(false)" class="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition cursor-pointer">
                     হ্যাঁ, জমা দিন
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Question Bank Inspector Modal -->
-    <div id="bank-manager-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5">
-        <div class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
-                <div>
-                    <h3 class="font-bold text-lg">প্রশ্নব্যাংক ম্যানেজার (প্রশ্নব্যাংক দেখুন ও নতুন প্রশ্ন যোগ করুন)</h3>
-                    <p class="text-xs text-slate-300">বর্তমানে প্রশ্নব্যাংকে মোট <span id="modal-bank-total" class="font-bold text-emerald-400">১৪২</span>টি প্রশ্ন লোড করা আছে</p>
-                </div>
-                <button type="button" onclick="closeBankManager()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white cursor-pointer">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="p-5 sm:p-6 overflow-y-auto space-y-5 flex-1">
-                <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-sm text-blue-900">
-                    <strong>কীভাবে আপনার ২০০-৩০০ প্রশ্ন যুক্ত করবেন?</strong>
-                    <p class="mt-1 text-blue-800 text-xs sm:text-sm">
-                        আপনি চাইলে নিচের JSON ফরম্যাটে আপনার প্রশ্নগুলো পেস্ট করে <strong>"প্রশ্ন লোড ও আপডেট করুন"</strong> বাটনে ক্লিক করে এখনই পরীক্ষা করে দেখতে পারেন, অথবা আমাকে আপনার প্রশ্নগুলো দিলে আমি সরাসরি কোডের ভেতরে স্থায়ীভাবে বসিয়ে দেব।
-                    </p>
-                </div>
-
-                <div>
-                    <div class="flex items-center justify-between mb-2">
-                        <label class="text-sm font-bold text-slate-700">প্রশ্নব্যাংক ডেটা (JSON ফরম্যাট):</label>
-                        <button type="button" onclick="resetDefaultBank()" class="text-xs font-semibold text-rose-600 hover:underline cursor-pointer">মূল ১৪২টি প্রশ্নে ফেরত যান</button>
-                    </div>
-                    <textarea id="bank-json-editor" rows="10" class="w-full p-3.5 rounded-2xl border border-slate-300 font-mono text-xs bg-slate-50 focus:bg-white focus:border-brand-600 outline-none"></textarea>
-                    <p id="bank-status-msg" class="text-xs mt-2 font-semibold hidden"></p>
-                </div>
-            </div>
-
-            <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex justify-end gap-3">
-                <button type="button" onclick="closeBankManager()" class="px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-700 font-semibold text-sm hover:bg-slate-100 cursor-pointer">
-                    বন্ধ করুন
-                </button>
-                <button type="button" onclick="applyCustomBank()" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-xs cursor-pointer">
-                    প্রশ্ন লোড ও আপডেট করুন
                 </button>
             </div>
         </div>
@@ -674,6 +678,7 @@
             // স্ক্রিন পরিবর্তন করা
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('bank-study-screen').classList.add('hidden');
             document.getElementById('exam-screen').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -1056,56 +1061,136 @@
 
         /**
          * =====================================================================
-         * ৫. প্রশ্নব্যাংক ম্যানেজার (প্রশ্নব্যাংক দেখা ও কাস্টম ডেটা টেস্ট)
+         * ৫. প্রশ্নব্যাংক রিডার (উত্তরসহ সব প্রশ্ন পড়া ও সার্চ করার সুবিধা)
          * =====================================================================
          */
         function openBankManager() {
-            const editor = document.getElementById('bank-json-editor');
-            const msg = document.getElementById('bank-status-msg');
-            msg.classList.add('hidden');
-            editor.value = JSON.stringify(QUESTION_BANK, null, 2);
-            document.getElementById('bank-manager-modal').classList.remove('hidden');
+            const searchInput = document.getElementById('bank-search-input');
+            const clearBtn = document.getElementById('bank-search-clear');
+            if (searchInput) searchInput.value = '';
+            if (clearBtn) clearBtn.classList.add('hidden');
+            
+            renderStudyQuestionList(QUESTION_BANK);
+
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('exam-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('bank-study-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function closeBankManager() {
-            document.getElementById('bank-manager-modal').classList.add('hidden');
+            document.getElementById('bank-study-screen').classList.add('hidden');
+            document.getElementById('start-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function applyCustomBank() {
-            const editor = document.getElementById('bank-json-editor');
-            const msg = document.getElementById('bank-status-msg');
-            try {
-                const parsed = JSON.parse(editor.value);
-                if (!Array.isArray(parsed) || parsed.length === 0) {
-                    throw new Error("কমপক্ষে ১টি প্রশ্ন থাকতে হবে।");
-                }
-                parsed.forEach((item, i) => {
-                    const qText = item.question || item.q;
-                    const ansIdx = typeof item.correctIndex === 'number' ? item.correctIndex : item.answer;
-                    if (!qText || !Array.isArray(item.options) || item.options.length !== 4 || typeof ansIdx !== 'number') {
-                        throw new Error(`${i + 1} নম্বর প্রশ্নের ফরম্যাট সঠিক নয়।`);
-                    }
-                    item.question = qText;
-                    item.correctIndex = ansIdx;
+        function clearBankSearch() {
+            const searchInput = document.getElementById('bank-search-input');
+            const clearBtn = document.getElementById('bank-search-clear');
+            searchInput.value = '';
+            clearBtn.classList.add('hidden');
+            renderStudyQuestionList(QUESTION_BANK);
+            searchInput.focus();
+        }
+
+        function filterQuestionBankList() {
+            const query = document.getElementById('bank-search-input').value.trim().toLowerCase();
+            const clearBtn = document.getElementById('bank-search-clear');
+            
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            if (!query) {
+                renderStudyQuestionList(QUESTION_BANK);
+                return;
+            }
+
+            const filtered = QUESTION_BANK.filter((item, idx) => {
+                const serialBn = toBn(idx + 1);
+                const inQuestion = item.question.toLowerCase().includes(query);
+                const inOptions = item.options.some(opt => opt.toLowerCase().includes(query));
+                const inSerial = serialBn.includes(query) || String(idx + 1).includes(query);
+                return inQuestion || inOptions || inSerial;
+            });
+
+            renderStudyQuestionList(filtered);
+        }
+
+        function renderStudyQuestionList(list) {
+            const container = document.getElementById('bank-study-list');
+            const countBadge = document.getElementById('bank-filtered-count');
+            countBadge.textContent = toBn(list.length);
+            container.innerHTML = '';
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-10 text-center space-y-2">
+                        <div class="text-slate-400 font-bold text-base">কোনো প্রশ্ন খুঁজে পাওয়া যায়নি</div>
+                        <p class="text-xs sm:text-sm text-slate-500">অন্য কোনো শব্দ দিয়ে আবার খুঁজে দেখুন</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+
+            list.forEach((item) => {
+                // মূল প্রশ্নব্যাংকে প্রশ্নটির ক্রমিক নম্বর বের করা
+                const originalSerial = QUESTION_BANK.findIndex(q => q.id === item.id) + 1;
+                const correctText = item.options[item.correctIndex];
+
+                let optionsHtml = '';
+                item.options.forEach((optText, optIdx) => {
+                    const isCorrect = optIdx === item.correctIndex;
+                    const optCardClass = isCorrect
+                        ? 'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 font-semibold shadow-2xs'
+                        : 'bg-slate-50/70 border border-slate-200 text-slate-700';
+                    const badgeClass = isCorrect
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-white border border-slate-300 text-slate-700';
+                    const rightTag = isCorrect
+                        ? `<span class="ml-auto inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full shrink-0">✓ সঠিক উত্তর</span>`
+                        : '';
+
+                    optionsHtml += `
+                        <div class="p-3 rounded-xl ${optCardClass} flex items-center gap-3 text-sm">
+                            <span class="w-6 h-6 rounded-lg ${badgeClass} font-bold text-xs flex items-center justify-center shrink-0">
+                                ${OPTION_LABELS[optIdx]}
+                            </span>
+                            <span class="leading-snug">${optText}</span>
+                            ${rightTag}
+                        </div>
+                    `;
                 });
 
-                QUESTION_BANK = parsed;
-                updateBankCounts();
-                msg.textContent = `সফলভাবে ${toBn(QUESTION_BANK.length)}টি প্রশ্ন লোড করা হয়েছে!`;
-                msg.className = 'text-xs mt-2 font-semibold text-emerald-600 block';
-            } catch (err) {
-                msg.textContent = `ত্রুটি: ${err.message}`;
-                msg.className = 'text-xs mt-2 font-semibold text-rose-600 block';
-            }
-        }
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl border border-slate-200 shadow-2xs p-4 sm:p-5 space-y-3.5';
+                card.innerHTML = `
+                    <div class="flex items-start gap-2.5">
+                        <span class="px-2.5 py-1 rounded-lg bg-brand-900 text-white font-bold text-xs sm:text-sm shrink-0 mt-0.5">
+                            ${toBn(originalSerial)}
+                        </span>
+                        <h4 class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                            ${item.question}
+                        </h4>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        ${optionsHtml}
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex items-center gap-2 text-xs sm:text-sm text-emerald-800 font-semibold">
+                        <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold shrink-0">সঠিক উত্তর:</span>
+                        <span>${OPTION_LABELS[item.correctIndex]}) ${correctText}</span>
+                    </div>
+                `;
+                fragment.appendChild(card);
+            });
 
-        function resetDefaultBank() {
-            QUESTION_BANK = [...DEFAULT_QUESTION_BANK];
-            document.getElementById('bank-json-editor').value = JSON.stringify(QUESTION_BANK, null, 2);
-            updateBankCounts();
-            const msg = document.getElementById('bank-status-msg');
-            msg.textContent = `ডিফল্ট ${toBn(QUESTION_BANK.length)}টি প্রশ্ন ফিরিয়ে আনা হয়েছে।`;
-            msg.className = 'text-xs mt-2 font-semibold text-brand-600 block';
+            container.appendChild(fragment);
+            container.scrollTop = 0;
         }
     </script>
 </body>
